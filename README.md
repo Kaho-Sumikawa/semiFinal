@@ -167,14 +167,19 @@ Spaceの連打が、同時に2本のゲージに効きます。
 
 ## 実装のポイント
 
-<!-- TODO: pushしたスクリプトを読んで記入します -->
+イベント駆動で疎結合にし、`GameManager` が状態（タイトル／ゲーム／リザルト）と全体の進行を一箇所で管理する構成にしています。UI・演出・音は `GameManager` や各ゲージが発火するイベントを購読するだけで、`GameManager` 側からUIを直接操作することはありません。
 
 | スクリプト | 役割 |
 |---|---|
-| `Assets/Scripts/xxxx.cs` | （例）足ゲージ・警戒ゲージの増減 |
-| `Assets/Scripts/xxxx.cs` | （例）男の子の接近・逃走 |
-| `Assets/Scripts/xxxx.cs` | （例）セミファイナル発動と判定・スコア計算 |
-| `Assets/Scripts/xxxx.cs` | （例）紙芝居チュートリアル |
+| `Core/GameManager.cs` | ゲーム全体の進行役。ゲージ・入力・接近する人・スコアを束ね、状態遷移とイベント発火を一手に担う |
+| `Core/JudgeSystem.cs` / `Core/ScoreManager.cs` | タイミング判定（Perfect〜Miss）× 足の開閉倍率でスコアを算出。ローカルランキングは`PlayerPrefs`に保存 |
+| `Gauges/LegGauge.cs` | 足ゲージ。時間経過で閉じ、連打で開く。全閉で死亡 |
+| `Gauges/AlertGauge.cs` | 警戒ゲージ。連打で上昇、時間経過で自然減衰。MAXで逃走 |
+| `Gauges/LegOpenTriggersFlee.cs` | 足が全開（連打しすぎ）になった瞬間、警戒ゲージを強制MAXにして確実に逃がす橋渡し役。2つのゲージ本体には手を加えず、イベント購読のみで両者を繋いでいる |
+| `Person/ApproachingPerson.cs` | 男の子の接近・退場。出現時に最接近タイミングを解析的に計算し、距離ゾーン（Perfect/Great/Good）に応じて反応アニメーションを再生 |
+| `Input/PlayerInputController.cs` | 連打（Space）と発動（Enter）を別キーにして暴発を防止。新Input Systemの`Keyboard.current`を直接参照 |
+| `Intro/TutorialSequence.cs` | 紙芝居形式のチュートリアル。本編と独立しており、カメラ撮影ポイントとナレーションのペアをInspector上で自由に編集できる |
+| `UI/ScreenFlowController.cs` | `GameManager`の状態変化を購読し、タイトル／ゲーム／リザルトの3パネルを`SetActive`で切り替え |
 
 ### WebGL公開での工夫
 - 日本語テキストがWebGLで文字化け（□表示）しないよう、ゲーム内で使う文字を洗い出してTextMeshProの日本語フォントアセットを作成
@@ -183,8 +188,12 @@ Spaceの連打が、同時に2本のゲージに効きます。
 
 ## 使用素材
 - セミ・男の子の3Dモデル、足の開閉アニメーション：自作
-- セミの鳴き声：自作（友達の声を録音し、Audacityで加工）
-<!-- TODO: 効果音・BGM・フォントなど使った素材を追記 -->
+- セミファイナルの鳴き声：自作（友達の声を録音し、Audacityで加工）
+- 背景の低ポリ環境アセット：「Low Poly Environment Park」（Palmov Island）
+- UIクリック音：「Free UI Click Sound Effects Pack」
+- 一部の効果音：「RPG Essentials Free」（Leohpaz）
+- アンビエントのセミの鳴き声（環境音）：フリー素材
+- フォント：TextMeshPro 用に日本語フォントアセットを作成して使用
 
 ## 制作者
 **gapu（角川 花歩）**
