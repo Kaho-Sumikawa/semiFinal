@@ -2,8 +2,7 @@
 
 > あなたは、もうすぐ尽きるセミ。連打して、死に抗え！
 
-<!-- TODO: プレイ画面のスクリーンショット or GIF を images/ に置いて差し替え -->
-![プレイ画面](images/screenshot.png)
+![プレイ画面](images/screenshot_play.png)
 
 ### ▶ [unityroomでプレイする（ブラウザ・約3分）](https://unityroom.com/games/semifinal)
 
@@ -63,6 +62,12 @@
 | セミファイナル発動（1ゲームにつき1回） | Enter |
 | 遊び方を表示 | Tab |
 
+### 画面
+
+| タイトル | 結果 |
+|---|---|
+| ![タイトル画面](images/screenshot_title.png) | ![結果画面](images/screenshot_result.png) |
+
 ---
 
 ## 企画のポイント
@@ -105,7 +110,6 @@ Spaceの連打が、同時に2本のゲージに効きます。
 | 紙の絵コンテ | 完成したチュートリアル |
 |---|---|
 | ![絵コンテ](images/storyboard.jpg) | ![完成画面](images/tutorial.gif) |
-<!-- TODO: 絵コンテの写真を images/storyboard.jpg、チュートリアルのGIFを images/tutorial.gif として置く -->
 
 チュートリアルを「飛ばされるもの」から「ゲームの入り口として楽しいもの」に変えることで、最初の数十秒から世界観に入り込めるゲームになりました。
 
