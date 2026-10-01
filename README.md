@@ -104,8 +104,8 @@ Spaceの連打が、同時に2本のゲージに効きます。
 
 | 紙の絵コンテ | 完成したチュートリアル |
 |---|---|
-| ![絵コンテ](images/storyboard.jpg) | ![完成画面](images/tutorial.png) |
-<!-- TODO: 絵コンテの写真を images/storyboard.jpg、チュートリアルのスクショ（またはGIF）を images/tutorial.png として置く -->
+| ![絵コンテ](images/storyboard.jpg) | ![完成画面](images/tutorial.gif) |
+<!-- TODO: 絵コンテの写真を images/storyboard.jpg、チュートリアルのGIFを images/tutorial.gif として置く -->
 
 チュートリアルを「飛ばされるもの」から「ゲームの入り口として楽しいもの」に変えることで、最初の数十秒から世界観に入り込めるゲームになりました。
 
